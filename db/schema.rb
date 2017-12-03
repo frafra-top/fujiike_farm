@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203064448) do
+ActiveRecord::Schema.define(version: 20171203070905) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.integer "price"
     t.text "content"
-    t.boolean "exist"
+    t.boolean "exist", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 20171203064448) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "contact_address"
-    t.integer "contact_postal_code"
+    t.string "contact_postal_code"
     t.string "delivery_addess"
-    t.integer "delivery_postal_code"
+    t.string "delivery_postal_code"
     t.string "phone"
     t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
