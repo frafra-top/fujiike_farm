@@ -45,8 +45,10 @@ ActiveRecord::Schema.define(version: 20171203070905) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "contact_name"
     t.string "contact_address"
     t.string "contact_postal_code"
+    t.string "delivery_name"
     t.string "delivery_addess"
     t.string "delivery_postal_code"
     t.string "phone"

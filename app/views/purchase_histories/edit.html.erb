@@ -1,0 +1,27 @@
+<h1>購入ステータス変更</h1>
+
+<table>
+  <tr>
+    <th>購入日</th>
+    <td><%= @purchase.created_at.strftime("%Y-%m-%d") %></td>
+  </tr>
+  <tr>
+    <th>お客様名</th>
+    <td><%= @purchase.user.contact_name %></td>
+  </tr>
+  <tr>
+    <th>商品名</th>
+    <td><%= @purchase.item.name %></td>
+  </tr>
+</table>
+<%= form_for @purchase do |form| %>
+  <table>
+    <tr>
+      <th><%= form.label :status %></th>
+      <td><%= form.select :status, PurchaseHistory.statuses_i18n.invert %></td>
+    </tr>
+  </table>
+<p><%= form.submit %></p>
+<%= link_to "戻る", user_path(@purchase.user) %>
+<% end %>
+
