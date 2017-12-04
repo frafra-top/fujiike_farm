@@ -1,0 +1,54 @@
+<h1>マイページ</h1>
+
+<h2>プロフィール</h2>
+<table class="mypage_table">
+  <tr>
+    <th>ユーザー名</th>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <th>氏名</th>
+    <td><%= @user.contact_name %></td>
+  </tr>
+    <tr>
+    <th>住所</th>
+    <td>〒<%= @user.contact_postal_code %> <%= @user.contact_address %></td>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <th>電話番号</th>
+    <td><%= @user.phone %></td>
+  </tr>
+  <tr>
+    <th>配送先氏名</th>
+    <td><%= @user.delivery_name %></td>
+  </tr>
+  <tr>
+    <th>配送先住所</th>
+    <td>〒<%= @user.delivery_postal_code %> <%= @user.delivery_addess %></td>
+  </tr>
+</table>
+
+<h2>購入履歴</h2>
+<% flash.each do |key, value| %>
+  <%= content_tag(:div, value, class: "#{key}") %>
+<% end %>
+<table class="mypage_table">
+  <tr>
+    <th>購入日</th>
+    <th>商品名</th>
+    <th>ステータス</th>
+  </tr>
+  <% @user.purchase_histories.order("created_at DESC").each do |ph| %>
+    <tr>
+      <td><%= ph.created_at.strftime("%Y-%m-%d") %></td>
+      <td><%= ph.item.name %></td>
+      <td><%= ph.status_i18n %> <%= link_to "変更", edit_purchase_history_path(ph) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "戻る", users_path %>

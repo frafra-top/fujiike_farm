@@ -1,0 +1,30 @@
+ja:
+  activerecord:
+    models:
+      purchase_history: 購入履歴
+      item: 商品
+    attributes:
+      purchase_history:
+        status: ステータス
+      item:
+        name: 商品名
+        price: 価格
+        content: 説明文
+    errors:
+      messages:
+        invalid: "の書式が正しくありません" # invalidはすでにあるが上書き
+  views:
+    pagination:
+      first:    "最初"
+      last:     "最後"
+      previous: "&lt;&lt;"
+      next:     "&gt;&gt;"
+      truncate: "（中略）"
+  enums:
+    purchase_history:
+      status:
+        applied: 申込済み
+        transfered: 振込済み
+        deliveried: お取引中
+        failed_payment: 入金失敗
+        canceled: 解約済み
