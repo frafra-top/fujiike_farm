@@ -16,7 +16,7 @@
   </tr>
   <tr>
     <th>メールアドレス</th>
-    <td><%= @user.email %></td>
+    <td><%= @user.email %> <%= link_to "連絡する", notification_makeone_user_path(@user, email: @user.email) %></td>
   </tr>
   <tr>
     <th>電話番号</th>
