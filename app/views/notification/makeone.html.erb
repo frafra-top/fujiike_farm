@@ -1,0 +1,33 @@
+<%= form_for @notification, :url => notification_sendone_user_path do |f| %>
+  <div class="page-header">
+    <h1>藤池ファームからのお知らせ（個別）</h1>
+  </div>
+
+  <% if @notification.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <strong>入力内容にエラーがあります</strong>
+      <ul>
+        <% @notification.errors.each do |attr, msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="table">
+    <tr>
+      <th>宛先<span class="text-danger">（必須）</span></th>
+      <td><%= f.text_field :email %></td>
+    </tr>
+    <tr>
+      <th>題名<span class="text-danger">（必須）</span></th>
+      <td><%= f.text_field :subject %></td>
+    </tr>
+    <tr>
+      <th>お知らせ内容<span class="text-danger">（必須）</span></th>
+      <td><%= f.text_area :message %></td>
+    </tr>
+  </table>
+  <%= f.submit '送信', class: 'btn btn-primary' %>
+<% end %>
+<%= link_to "戻る", user_path(params[:id]) %>
