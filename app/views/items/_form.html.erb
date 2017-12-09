@@ -26,6 +26,11 @@
     <%= form.text_area :content, id: :item_content %>
   </div>
 
+  <div class="field">
+    <%= form.label "画像" %>
+    <%= form.attachment_field :images_files, multiple: true %></p>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

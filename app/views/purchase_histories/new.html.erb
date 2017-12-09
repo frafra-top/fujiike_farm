@@ -1,14 +1,12 @@
-<p id="notice"><%= notice %></p>
+<h2>この商品を申し込みますか？</h2>
+
+<div>
+	※お申し込みの前に必ず<%= link_to "ご契約申込時の注意事項", notes_path %>をご確認ください。
+</div>
 
 <p>
   <strong>Name:</strong>
   <%= @item.name %>
-</p>
-
-<p>
-	<% if user_signed_in? %>
-		<%= link_to 'この商品を申し込む', purchase_histories_new_item_path %>
-	<% end %>
 </p>
 
 <div>
@@ -31,8 +29,9 @@
   <%= @item.content %>
 </p>
 
-<% if user_signed_in? && current_user.admin? %>
-	<%= link_to '編集', edit_item_path(@item) %> |
-	<%= link_to '削除', @item, method: :delete, data: { confirm: 'Are you sure?' } %> |
+
+<%= form_with(model: [@purchase.item, @purchase], url: purchase_histories_item_path, local: true) do |form| %>
+	<%= form.hidden_field :status %>
+	<p><%= form.submit '申し込む' %></p>
+	<%= link_to "戻る", item_path(@item) %>
 <% end %>
-<%= link_to '戻る', items_path %>
