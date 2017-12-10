@@ -16,7 +16,7 @@
     <% @items.each do |item| %>
       <tr>
         <td><%= item.name %></td>
-        <td><%= item.price %></td>
+        <td><%= number_to_currency(item.price, :precision => 0, :unit => '円') %></td>
         <td><%= item.content %></td>
         <td><%= link_to 'Show', item %></td>
       </tr>
@@ -26,4 +26,6 @@
 
 <br>
 
-<%= link_to '管理者画面へ', admin_index_path %>
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to '管理者画面へ', admin_index_path %>
+<% end %>

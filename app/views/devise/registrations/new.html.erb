@@ -4,6 +4,11 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
@@ -19,6 +24,37 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div>
+    <h2>契約者情報</h2>
+    <div class="field">
+      <%= f.label '契約者氏名' %><br />
+      <%= f.text_field :contact_name, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label '契約者住所' %><br />
+      <%= f.text_field :contact_postal_code, placeholder: "郵便番号", autofocus: true %>
+      <%= f.text_field :contact_address, placeholder: "住所", autofocus: true %>
+    </div>
+  </div>
+
+  <div>
+    <h2>配送先情報</h2>
+    <div class="field">
+      <%= f.label '配送先氏名（宛名）' %><br />
+      <%= f.text_field :delivery_name, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label '配送先住所' %><br />
+      <%= f.text_field :delivery_postal_code, placeholder: "郵便番号", autofocus: true %>
+      <%= f.text_field :delivery_address, placeholder: "住所", autofocus: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label '電話番号' %><br />
+    <%= f.text_field :phone, autofocus: true %>
   </div>
 
   <div class="actions">

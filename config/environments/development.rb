@@ -52,6 +52,9 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # devise用メールホスト
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
   # メール送信の設定
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
@@ -59,8 +62,8 @@ Rails.application.configure do
     port:                 587,
     address:              'smtp.gmail.com',
     domain:               'smtp.gmail.com',
-    user_name:            '藤池ファームのメールアドレス',
-    password:             '藤池ファームのパスワード',
+    user_name:            "藤池ファームのメールアドレス", #gmailアドレス
+    password:             "藤池ファームのパスワード", #gmailパスワード
     authentication:       'login',
     enable_starttls_auto: true
   }

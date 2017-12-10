@@ -9,6 +9,19 @@
   </head>
 
   <body>
+  	<header>
+  		<%= link_to "トップ", items_path %>
+      <%= link_to "お問い合わせ", inquiry_path %>
+      <%= link_to "ご契約申込時の注意事項", notes_path %>
+  		<% if user_signed_in? %>
+  			<%= current_user.name %>さん
+  			<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+  			<%= link_to 'マイページ', user_path(current_user) %>
+  		<% else %>
+	  		<%= link_to "ログイン", new_user_session_path %>
+	  		<%= link_to "アカウント作成", new_user_registration_path %>
+	  	<% end %>
+  	</header>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,11 @@
+=====購入商品=====
+
+<%= @purchase.item.name %>
+<%= number_to_currency(@purchase.item.price, :precision => 0, :unit => '円') %>
+
+=====購入者様情報=====
+
+<%= @purchase.user.contact_name %>
+<%= @purchase.user.contact_postal_code %>
+<%= @purchase.user.contact_address %>
+<%= @purchase.user.phone %>
