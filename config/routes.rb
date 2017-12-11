@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     member {
       get 'purchase_histories/new' => 'purchase_histories#new'
       post 'purchase_histories' => 'purchase_histories#create'
-      get 'purchase_histories/applied' => 'purchase_histories#applied'      
+      get 'purchase_histories/applied' => 'purchase_histories#applied' 
     }
   end
   resources :purchase_histories, only: [:edit, :update]
