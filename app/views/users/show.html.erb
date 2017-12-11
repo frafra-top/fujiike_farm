@@ -27,14 +27,6 @@
     <th>電話番号</th>
     <td><%= @user.phone %></td>
   </tr>
-  <tr>
-    <th>配送先氏名</th>
-    <td><%= @user.delivery_name %></td>
-  </tr>
-  <tr>
-    <th>配送先住所</th>
-    <td>〒<%= @user.delivery_postal_code %> <%= @user.delivery_address %></td>
-  </tr>
 </table>
 
 <div><%= link_to 'プロフィールの編集', edit_user_registration_path %></div>
@@ -48,6 +40,7 @@
     <th>購入日</th>
     <th>商品名</th>
     <th>ステータス</th>
+    <th>配送先指定</th>
   </tr>
   <% @user.purchase_histories.order("created_at DESC").each do |ph| %>
     <tr>
@@ -56,8 +49,30 @@
       <td>
         <%= ph.status_i18n %> 
         <% if current_user.admin? %>
-          <%= link_to "変更", edit_purchase_history_path(ph) %></td>
+          <%= link_to "変更", edit_purchase_history_path(ph) %>
         <% end %>
+      </td>
+      <td>
+        <% if ph.delivery_name.nil? && ph.delivery_postal_code.nil? && ph.delivery_address.nil? %>
+          登録住所
+        <% else %>
+          <% if ph.delivery_name.present? %>
+            <%= ph.delivery_name %>
+          <% else %>
+            <%= ph.user.contact_name %>
+          <% end %>
+          <% if ph.delivery_postal_code.present? %>
+            <%= ph.delivery_postal_code %>
+          <% else %>
+            <%= ph.user.contact_postal_code %>
+          <% end %>
+          <% if ph.delivery_address.present? %>
+            <%= ph.delivery_address %>
+          <% else %>
+            <%= ph.user.contact_address %>
+          <% end %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>

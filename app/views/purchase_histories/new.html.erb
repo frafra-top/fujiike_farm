@@ -29,8 +29,26 @@
   <%= @item.content %>
 </p>
 
+<%= form_with(model: [@purchase.item, @purchase], url: item_purchase_histories_path, local: true) do |form| %>
 
-<%= form_with(model: [@purchase.item, @purchase], url: purchase_histories_item_path, local: true) do |form| %>
+  <div>
+    <h2>配送先情報の設定</h2>
+    <div>
+      ご登録住所以外の住所に配送をご希望のお客様は以下の配送先住所をご入力ください。<br>
+      ご指定が無い場合は空欄で構いません。
+    </div>
+    <br>
+    <div class="field">
+      <%= form.label '配送先氏名（宛名）' %><br />
+      <%= form.text_field :delivery_name, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= form.label '配送先住所' %><br />
+      <%= form.text_field :delivery_postal_code, placeholder: "郵便番号", autofocus: true %>
+      <%= form.text_field :delivery_address, placeholder: "住所", autofocus: true %>
+    </div>
+  </div>
+
 	<%= form.hidden_field :status %>
 	<p><%= form.submit '申し込む' %></p>
 	<%= link_to "戻る", item_path(@item) %>

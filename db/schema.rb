@@ -33,6 +33,9 @@ ActiveRecord::Schema.define(version: 20171209082136) do
     t.integer "user_id"
     t.integer "item_id"
     t.integer "status", default: 0
+    t.string "delivery_name"
+    t.string "delivery_address"
+    t.string "delivery_postal_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_purchase_histories_on_item_id"
@@ -56,9 +59,6 @@ ActiveRecord::Schema.define(version: 20171209082136) do
     t.string "contact_name"
     t.string "contact_address"
     t.string "contact_postal_code"
-    t.string "delivery_name"
-    t.string "delivery_address"
-    t.string "delivery_postal_code"
     t.string "phone"
     t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
