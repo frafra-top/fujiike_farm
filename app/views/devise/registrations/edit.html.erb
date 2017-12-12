@@ -26,19 +26,6 @@
     </div>
   </div>
 
-  <div>
-    <h2>配送先情報</h2>
-    <div class="field">
-      <%= f.label '配送先氏名（宛名）' %><br />
-      <%= f.text_field :delivery_name, autofocus: true %>
-    </div>
-    <div class="field">
-      <%= f.label '配送先住所' %><br />
-      <%= f.text_field :delivery_postal_code, placeholder: "郵便番号", autofocus: true %>
-      <%= f.text_field :delivery_address, placeholder: "住所", autofocus: true %>
-    </div>
-  </div>
-
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>

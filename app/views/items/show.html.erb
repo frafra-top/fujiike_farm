@@ -7,7 +7,7 @@
 
 <p>
 	<% if user_signed_in? %>
-		<%= link_to 'この商品を申し込む', purchase_histories_new_item_path %>
+		<%= link_to 'この商品を申し込む', item_purchase_histories_new_path(@item) %>
 	<% end %>
 </p>
 

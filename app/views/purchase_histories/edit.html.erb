@@ -21,6 +21,16 @@
       <td><%= form.select :status, PurchaseHistory.statuses_i18n.invert %></td>
     </tr>
   </table>
+  <strong>配送先住所変更</strong>
+    <div class="field">
+      <%= form.label '配送先氏名（宛名）' %><br />
+      <%= form.text_field :delivery_name, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= form.label '配送先住所' %><br />
+      <%= form.text_field :delivery_postal_code, placeholder: "郵便番号", autofocus: true %>
+      <%= form.text_field :delivery_address, placeholder: "住所", autofocus: true %>
+    </div>
 <p><%= form.submit %></p>
 <%= link_to "戻る", user_path(@purchase.user) %>
 <% end %>

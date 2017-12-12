@@ -7,18 +7,18 @@ class PurchaseHistoriesController < ApplicationController
   end
 
   def new
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
     @purchase = PurchaseHistory.new
   end
 
   def create
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
     @purchase = PurchaseHistory.new(purchase_params)
     @purchase.user_id = current_user.id
     @purchase.item_id = @item.id
     if @purchase.save
       PurchaseMailer.purchase_mail(@purchase).deliver
-      redirect_to :action => 'applied'
+      redirect_to item_applied_path(@item, @purchase)
     else
       render :new
     end
@@ -39,7 +39,8 @@ class PurchaseHistoriesController < ApplicationController
   end
 
   def applied
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
+    @purchase = PurchaseHistory.find(params[:id])
   end
 
   private
@@ -62,6 +63,6 @@ class PurchaseHistoriesController < ApplicationController
     end
 
     def purchase_params
-      params.require(:purchase_history).permit(:status, :user_id, :item_id)
+      params.require(:purchase_history).permit(:delivery_name, :delivery_postal_code, :delivery_address, :status, :user_id, :item_id)
     end
 end
