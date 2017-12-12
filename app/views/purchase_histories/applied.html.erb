@@ -6,7 +6,29 @@
 	この度はお申し込みいただき誠にありがとうございました。
 </p>
 
-<h3>お申込商品</h3>
+<h3>お申込内容</h3>
 
-<%= @item.name %>
+<strong>対象商品：</strong><%= @item.name %>
 <%= number_to_currency(@item.price, :precision => 0, :unit => '円') %>
+
+<br>
+<strong>配送先住所</strong>
+<% if @purchase.delivery_name.nil? && @purchase.delivery_postal_code.nil? && @purchase.delivery_address.nil? %>
+  登録住所
+<% else %>
+  <% if @purchase.delivery_name.present? %>
+    <%= @purchase.delivery_name %>
+  <% else %>
+    <%= @purchase.user.contact_name %>
+  <% end %>
+  <% if @purchase.delivery_postal_code.present? %>
+    <%= @purchase.delivery_postal_code %>
+  <% else %>
+    <%= @purchase.user.contact_postal_code %>
+  <% end %>
+  <% if @purchase.delivery_address.present? %>
+    <%= @purchase.delivery_address %>
+  <% else %>
+    <%= @purchase.user.contact_address %>
+  <% end %>
+<% end %>

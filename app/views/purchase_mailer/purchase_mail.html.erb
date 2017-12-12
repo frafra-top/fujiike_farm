@@ -5,7 +5,26 @@
 
 <h2>購入者様情報</h2>
 
+
 <%= @purchase.user.contact_name %>
 <%= @purchase.user.contact_postal_code %>
 <%= @purchase.user.contact_address %>
 <%= @purchase.user.phone %>
+
+<strong>配送先住所</strong>
+
+  <% if @purchase.delivery_name.present? %>
+    <%= @purchase.delivery_name %>
+  <% else %>
+    <%= @purchase.user.contact_name %>
+  <% end %>
+  <% if @purchase.delivery_postal_code.present? %>
+    <%= @purchase.delivery_postal_code %>
+  <% else %>
+    <%= @purchase.user.contact_postal_code %>
+  <% end %>
+  <% if @purchase.delivery_address.present? %>
+    <%= @purchase.delivery_address %>
+  <% else %>
+    <%= @purchase.user.contact_address %>
+  <% end %>

@@ -1,4 +1,4 @@
-<%= form_for @notification, :url => notification_sendall_path do |f| %>
+<%= form_for @notification, :url => notification_confirm_mails_path do |f| %>
   <div class="page-header">
     <h1>藤池ファームからのお知らせ（全体）</h1>
   </div>
@@ -24,6 +24,6 @@
       <td><%= f.text_area :message %></td>
     </tr>
   </table>
-  <%= f.submit '送信', class: 'btn btn-primary' %>
+  <%= f.submit '確認', class: 'btn btn-primary' %>
 <% end %>
-<%= link_to "戻る", admin_index_path %>
+<%= link_to "戻る", admin_index_path, class: 'btn btn-primary' %>
