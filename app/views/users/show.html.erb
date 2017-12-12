@@ -20,7 +20,7 @@
     <td>
       <%= @user.email %>
       <% if current_user.admin? %>
-        <%= link_to "連絡する", notification_makeone_user_path(@user, email: @user.email) %></td>
+        <%= link_to "連絡する", notification_make_mail_user_path(@user, email: @user.email) %></td>
       <% end %>
   </tr>
   <tr>
@@ -47,7 +47,7 @@
       <td><%= ph.created_at.strftime("%Y-%m-%d") %></td>
       <td><%= ph.item.name %></td>
       <td>
-        <%= ph.status_i18n %> 
+        <%= ph.status_i18n %>
         <% if current_user.admin? %>
           <%= link_to "変更", edit_purchase_history_path(ph) %>
         <% end %>
@@ -76,5 +76,8 @@
     </tr>
   <% end %>
 </table>
-
-<%= link_to "戻る", users_path %>
+<% if current_user.admin? %>
+  <%= link_to "戻る", users_path %>
+<% else %>
+  <%= link_to "戻る", root_path %>
+<% end %>
