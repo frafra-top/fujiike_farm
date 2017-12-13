@@ -16,3 +16,59 @@
 
  // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+body {
+	font-family: "Sawarabi Mincho";
+}
+
+section {
+	padding: 40px 0;
+}
+
+h2 {
+	margin-bottom: 50px;
+}
+
+.logo {
+	color: #0000cd !important;
+	font-size: 5vw;
+	text-shadow: 5px 5px 3px #4169e1;
+	font-weight: 800;
+}
+
+.logo:hover {
+	text-decoration: none;
+	color: #0000cd;
+}
+
+.top {
+	max-height: 100px;
+}
+
+.hover:hover {
+	opacity: 0.7;
+}
+
+.carousel-fade .carousel-inner .carousel-item {
+  opacity: 0.2;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-property: opacity;
+  transition-duration:2s;
+  transition-timing-function:ease-out;
+}
+.carousel-fade .carousel-inner .active {
+  opacity: 0.8;
+}
+
+.slide-image {
+	max-height: 600px;
+}
+
+.carousel {
+	margin-bottom: 40px;
+}
+
+
+
