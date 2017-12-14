@@ -1,31 +1,94 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Items</h1>
+<div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000" data-pause="false">
+  <!-- スライドさせる画像の設定 -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <!--<img class="d-block w-100" src="..." alt="第1スライド">-->
+      <%= image_tag '農場としての特色_春から夏にかけての農場の様子.jpg', :width => "100%", class: "d-block w-100 slide-image" %>
+    </div><!-- /.carousel-item -->
+    <div class="carousel-item">
+      <!--<img class="d-block w-100" src="..." alt="第2スライド">-->
+      <%= image_tag '農場としての特色_秋の農場の様子.jpg', :width => "100%", class: "d-block w-100 slide-image" %>
+    </div><!-- /.carousel-item -->
+    <div class="carousel-item">
+      <!--<img class="d-block w-100" src="..." alt="第3スライド">-->
+      <%= image_tag '農場としての特色_のんびりと過ごせる広い環境です.jpg', :width => "100%", class: "d-block w-100 slide-image" %>
+    </div><!-- /.carousel-item -->
+    <div class="carousel-item">
+      <!--<img class="d-block w-100" src="..." alt="第3スライド">-->
+      <%= image_tag '農場としての特色_落ち着いた環境で乳牛を育てています.jpg', :width => "100%", class: "d-block w-100 slide-image" %>
+    </div><!-- /.carousel-item -->
+  </div><!-- /.carousel-inner -->
+</div><!-- /.carousel -->
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Content</th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="container-fluid">
+  <section>
+    <div class="offset-md-2 col-md-8">
+      <h2 class="text-success text-center">農場としての特色</h2>
+      <div>
+        当農場は、10頭以下という少ない乳牛に対して、東京ドームに直しておよそ30個分という非常に広い敷地で育てていることが最大の特色です。<br>
+        開放感あふれるのどかな環境で、ストレスなく育てられた乳牛たちは、たっぷりの脂肪を含んでいながらも、さっぱりした口当たりになるお乳を出すようになります。<br>
+        農場自体は創業して5年ほどの若い農場ですが、土地は曽祖父の代から代々受け継いできた群馬の土地であり、もともと牧草を生産するのに使われていた土地でした。<br>
+        全国に出荷できる品質の牧草を自分たちの牛のためだけに使う、この贅沢な取り組みが、ふじいけファームの牛乳の品質を支えています。
+      </div>
+    </div>
+  </section>
 
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= number_to_currency(item.price, :precision => 0, :unit => '円') %></td>
-        <td><%= item.content %></td>
-        <td><%= link_to 'Show', item %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <section>
+    <div class="offset-lg-1 col-lg-10">
+      <h2 class="text-success text-center">農場としての取り組み</h2>
+      <div>
+        当農場は品質管理にも余念がありません。<br>
+        牛たちが生産してくれた牛乳は、搾りたてを貯蔵用のタンクに運ぶまでに殺菌消毒したのち、最適な温度で保管しています。<br>
+        品質を検査するために必要な器具はすべて機械管理しており、自分たちで毎朝・毎昼・毎晩、1日3回の清掃を行い、徹底的に埃や雑菌が入ることを防いでおります。<br>
+        毎日の食卓に安心を届けたい、その一心で、効率化すべきところは効率化し、人の手ではやりきれない部分は機械の力を使い、その中で手をかけるべきところは徹底的に手をかける、そのスタイルで、頭数は少ないながら農場として今までやってくることができました。
+      </div>
+      <div class="clearfix">
+        <div class="float-left col-md-4 py-4"><%= image_tag '農場としての取り組み_大型タンクで殺菌し保存しています.jpg', width: "100%" %></div>
+        <div class="float-left col-md-4 py-4"><%= image_tag '農場としての取り組み_工場は常に清潔に保たれています.jpg', width: "100%" %></div>
+        <div class="float-left col-md-4 py-4"><%= image_tag '農場としての取り組み_品質管理は機械制御で徹底されています.jpg', width: "100%" %></div>
+      </div>
+    </div>
+  </section>
 
-<br>
+  <section>
+    <div class="offset-md-1 col-md-10">
+      <h2 class="text-success text-center">お客様のために</h2>
+      <div class="clearfix">
+        <div class="col-lg-5 float-left">
+          <%= image_tag '牛乳_配送_1_瓶詰めでお送りしています.jpg', width: "100%" %>
+        </div>
+        <div class="offset-lg-1 col-lg-6 float-left">
+          お客様とのお約束として、一人一人のお客様のことを理解するように取り組むことを行なっています。<br>
+          当農場では、基本的には発注をいただいたお客様それぞれに個別でご連絡を取らせていただいており、配送のペースや、配送時の梱包などがお客様それぞれで異なる場合があります。<br>
+          また、お取引の長いお客様には、ご希望  に応じて発送するものの中でも少し脂肪分が少なめのものや、ヨーグルトなどでは固めのもの、柔らかめのものなど、多少異なる仕上がりのものの中でお好みのものを選別してお送りしていることもあります。<br>
+          お客様それぞれの願いを叶えたい、その一心でこれまで皆様とやりとりさせていただいてきています。<br>
+          そんな当農場の牛乳やバター、ヨーグルト、ぜひ一度お試しくださいませ。
+        </div>
+      </div>
+    </div>
+  </section>
 
-<% if user_signed_in? && current_user.admin? %>
-  <%= link_to '管理者画面へ', admin_index_path %>
-<% end %>
+  <section>
+    <div class="offset-md-1 col-md-10">
+      <h2 class="text-success text-center">商品ラインナップ</h2>
+      <div class="offset-md-1 col-md-10 clearfix">
+        <% @items.each do |item| %>
+          <%= link_to item do %>
+            <div class="col-md-6 float-left hover", style="height: 350px;">
+              <% if item.images.present? %>
+                <div class="mx-auto py-4", style="max-width: 250px; max-height: 220px;"><%= attachment_image_tag item.images.first, :file, :fit, 250, 200 %></div>
+              <% else %>
+                <div class="mx-auto py-4", style="max-width: 250px; max-height: 220px;"><%= image_tag 'l_e_others_501.png', :size => "200" %></div>
+              <% end %>
+              <div class="py-4 text-center"><%= item.name %></div>
+              <div class="text-primary text-center"><%= number_to_currency(item.price, :precision => 0, :unit => '円') %></div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</div>
+
+
