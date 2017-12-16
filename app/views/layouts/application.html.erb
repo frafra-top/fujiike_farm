@@ -12,31 +12,38 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg justify-content-between">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="ナビゲーションの切替">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <%#= link_to "ふじいけファーム", items_path, class: "navbar-brand" %>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
-            <% if user_signed_in? %>
-              <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">メニュー</a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">メニュー</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <% if user_signed_in? %>
                   <%= link_to 'マイページ', user_path(current_user), class: "dropdown-item" %>
-                  <%= link_to "お問い合わせ", inquiry_path, class: "dropdown-item" %>
-                  <%= link_to "ご契約申込時の注意事項", notes_path, class: "dropdown-item" %>
-                  <a href="#" class="dropdown-item">会社概要</a>
-                  <% if current_user.admin? %>
-                  <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">管理者メニュー</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <%= link_to "商品登録", new_item_path, class: "dropdown-item" %>
-                      <%= link_to "顧客一覧", users_path, class: "dropdown-item" %>
-                      <%= link_to "全体告知メール", notification_make_mails_path, class: "dropdown-item" %>
-                  <% end %>
+                <% end %>
+                <%= link_to "農場としての特色", items_path(anchor: 'ahead_to_feature'), class: "dropdown-item" %>
+                <%= link_to "農場としての取り組み", items_path(anchor: 'ahead_to_efforts'), class: "dropdown-item" %>
+                <%= link_to "お客様のために", items_path(anchor: 'ahead_to_service'), class: "dropdown-item" %>
+                <%= link_to "商品ラインナップ", items_path(anchor: 'ahead_to_items'), class: "dropdown-item" %>
+                <%= link_to "お問い合わせ", inquiry_path, class: "dropdown-item" %>
+                <%= link_to "ご契約申込時の注意事項", notes_path, class: "dropdown-item" %>
+                <%= link_to "会社概要", items_path(anchor: 'ahead_to_overview'), class: "dropdown-item" %>
+              </div>
+            </li>
+            <% if user_signed_in? && current_user.admin? %>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">管理者メニュー</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <%= link_to "商品登録", new_item_path, class: "dropdown-item" %>
+                  <%= link_to "顧客一覧", users_path, class: "dropdown-item" %>
+                  <%= link_to "全体告知メール", notification_make_mails_path, class: "dropdown-item" %>
                 </div><!-- ./dropdown-menu -->
               </li>
+            <% end %>
+            <% if user_signed_in? %>
               <li class="nav-item">
                 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %>
               </li>
@@ -47,22 +54,14 @@
               <li class="nav-item">
                 <%= link_to "アカウント作成", new_user_registration_path, class: "nav-link" %>
               </li>
-              <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">メニュー</a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <%= link_to "お問い合わせ", inquiry_path, class: "dropdown-item" %>
-                  <%= link_to "ご契約申込時の注意事項", notes_path, class: "dropdown-item" %>
-                  <a href="#" class="dropdown-item">会社概要</a>
-                </div><!-- ./dropdown-menu -->
-              </li>
             <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->
       </nav>
       <div class="top">
-        <div class="text-center py-2"><%= link_to "ふじいけファーム", items_path, class: "logo" %></div>
+        <div class="bg-light text-center py-2"><%= link_to "すこやか牛乳", items_path, class: "logo" %></div>
       </div>
-      <p id="notice"><%= notice %></p>
+      <div class="bg-light col-12 text-center py-4" id="notice"><%= notice %></div>
   	</header>
       <%= yield %>
   </body>

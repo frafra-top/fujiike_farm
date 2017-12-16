@@ -1,52 +1,86 @@
-<h2>Sign up</h2>
+<div class="container-fluid">
+  <section>
+    <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10">
+      <h2 class="text-success text-center mb-5">アカウント作成</h2>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div>
-    <h2>契約者情報</h2>
-    <div class="field">
-      <%= f.label '契約者氏名' %><br />
-      <%= f.text_field :contact_name, autofocus: true %>
+        <table class="table">
+          <tr>
+            <th style="width: 30%">
+              ニックネーム<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.text_field :name, class: "form-control w-100 p-2 my-3" %>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 30%">
+              フルネーム<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.text_field :contact_name, class: "form-control w-100 p-2 my-3" %>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 30%">
+              メールアドレス<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.email_field :email, class: "form-control w-100 p-2 my-3" %>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 30%">
+              パスワード<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.password_field :password, autocomplete: "off", class: "form-control w-100 p-2 my-3" %>
+              <% if @minimum_password_length %>
+                <small><%= @minimum_password_length %>文字以上</small>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 30%">
+              パスワード（確認）<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control w-100 p-2 my-3" %>
+              <small>確認のためにもう一度ご入力ください</small>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 30%">
+              郵便番号<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.text_field :contact_postal_code, class: "form-control w-100 p-2 my-3" %>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 30%">
+              住所<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.text_field :contact_address, class: "form-control w-100 p-2 my-3" %>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 30%">
+              電話番号<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.text_field :phone, class: "form-control w-100 p-2 my-3" %>
+            </td>
+          </tr>
+        </table>
+        <div class="mx-auto clearfix" , style="width: 200px;">
+          <div class="m-3 float-left">
+            <%= f.submit '登録', class: "btn btn-outline-secondary" %>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <div class="field">
-      <%= f.label '契約者住所' %><br />
-      <%= f.text_field :contact_postal_code, placeholder: "郵便番号", autofocus: true %>
-      <%= f.text_field :contact_address, placeholder: "住所", autofocus: true %>
-    </div>
-  </div>
-
-  <div class="field">
-    <%= f.label '電話番号' %><br />
-    <%= f.text_field :phone, autofocus: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  </section>
+</div>
