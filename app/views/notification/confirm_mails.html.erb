@@ -1,23 +1,28 @@
-<div class="page-header">
-  <h1>お問い合わせ</h1>
-</div>
+<div class="container-fluid">
+  <section>
+    <div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+      <h2 class="text-success text-center">全体メール送信内容の確認</h2>
 
-<%= form_for @notification, :url => notification_send_mails_path do |f| %>
-  <table class="table">
-      <th>題名<span class="text-danger">（必須）</span></th>
-      <td>
-        <%= f.hidden_field :subject %>
-        <%= @notification.subject %>
-      </td>
-    </tr>
-    <tr>
-      <th>お知らせ内容<span class="text-danger">（必須）</span></th>
-      <td>
-        <%= f.hidden_field :message %>
-        <%= @notification.message %>
-      </td>
-    </tr>
-  </table>
-  <%= f.submit '送信', name: 'send_mail', class: 'btn btn-primary' %>
-  <%= f.submit '戻る', name: 'back', class: 'btn btn-primary' %>
-<% end %>
+      <%= form_for @notification, :url => notification_send_mails_path do |f| %>
+        <div class="under-line offset-md-2 col-md-8 pb-2 pt-3 clearfix">
+          <div class="col-4 float-left">題名</div>
+          <div class="col-8 float-left">
+            <%= f.hidden_field :subject %>
+            <%= @notification.subject %>
+          </div>
+        </div>
+        <div class="mt-5">
+          <p class="text-center">お知らせ内容</p>
+          <div class="offset-sm-1 col-sm-10">
+            <%= f.hidden_field :message %>
+            <%= simple_format(@notification.message) %>
+          </div>
+        </div>
+        <div class="mx-auto clearfix" , style="width: 200px;">
+          <div class="m-3 float-left"><%= f.submit '送信', name: 'send', class: "btn btn-outline-secondary" %></div>
+          <div class="m-3 float-left"><%= f.submit '戻る', name: 'back', class: "btn btn-outline-secondary" %></div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>

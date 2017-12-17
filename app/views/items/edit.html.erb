@@ -1,6 +1,9 @@
-<h1>Editing Item</h1>
+<div class="container-fluid">
+  <section>
+    <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10">
+      <h2 class="text-success text-center mb-5">商品情報の編集</h2>
+			<%= render 'form', item: @item %>
+		</div>
+	</section>
+</div>
 
-<%= render 'form', item: @item %>
-
-<%= link_to 'Show', @item %> |
-<%= link_to 'Back', items_path %>

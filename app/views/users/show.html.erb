@@ -1,83 +1,139 @@
-<h1>マイページ</h1>
+<div class="container-fluid">
 
-<h2>プロフィール</h2>
+  <section>
+    <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10">
+      <h2 class="text-success text-center mb-5">ご登録情報</h2>
+      <table class="offset-md-2 col-md-8 mypage_table table-striped">
+        <tbody>
+          <tr>
+            <th>ユーザー名</th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th>氏名</th>
+            <td><%= @user.contact_name %></td>
+          </tr>
+            <tr>
+            <th>住所</th>
+            <td>〒<%= @user.contact_postal_code %> <%= @user.contact_address %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td>
+              <%= @user.email %>
+              <% if current_user.admin? %>
+                <%= link_to "（連絡する）", notification_make_mail_user_path(@user, email: @user.email), class: "btn" %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @user.phone %></td>
+          </tr>
+        </tbody>
+      </table>
 
-<table class="mypage_table">
-  <tr>
-    <th>ユーザー名</th>
-    <td><%= @user.name %></td>
-  </tr>
-  <tr>
-    <th>氏名</th>
-    <td><%= @user.contact_name %></td>
-  </tr>
-    <tr>
-    <th>住所</th>
-    <td>〒<%= @user.contact_postal_code %> <%= @user.contact_address %></td>
-  </tr>
-  <tr>
-    <th>メールアドレス</th>
-    <td>
-      <%= @user.email %>
-      <% if current_user.admin? %>
-        <%= link_to "連絡する", notification_make_mail_user_path(@user, email: @user.email) %></td>
-      <% end %>
-  </tr>
-  <tr>
-    <th>電話番号</th>
-    <td><%= @user.phone %></td>
-  </tr>
-</table>
+      <div class="offset-3 col-6 p-5">
+        <%= link_to '登録内容を編集する', edit_user_registration_path, class: "btn btn-info btn-block my-3" %>
+      </div>
+    </div>
+  </section>
 
-<div><%= link_to 'プロフィールの編集', edit_user_registration_path %></div>
+  <section>
+    <div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+      <h2 class="text-success text-center mb-5">ご契約状況</h2>
+    <div>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
 
-<h2>購入履歴</h2>
-<% flash.each do |key, value| %>
-  <%= content_tag(:div, value, class: "#{key}") %>
-<% end %>
-<table class="mypage_table">
-  <tr>
-    <th>購入日</th>
-    <th>商品名</th>
-    <th>ステータス</th>
-    <th>配送先指定</th>
-  </tr>
-  <% @user.purchase_histories.order("created_at DESC").each do |ph| %>
-    <tr>
-      <td><%= ph.created_at.strftime("%Y-%m-%d") %></td>
-      <td><%= ph.item.name %></td>
-      <td>
-        <%= ph.status_i18n %>
-        <% if current_user.admin? %>
-          <%= link_to "変更", edit_purchase_history_path(ph) %>
-        <% end %>
-      </td>
-      <td>
-        <% if ph.delivery_name.nil? && ph.delivery_postal_code.nil? && ph.delivery_address.nil? %>
-          登録住所
-        <% else %>
-          <% if ph.delivery_name.present? %>
-            <%= ph.delivery_name %>
+    <% @user.purchase_histories.order("created_at DESC").each do |ph| %>
+      <div class="history-box offset-lg-1 col-lg-10 my-5 p-3">
+        <div class="m-3">
+          <% if ph.item.exist? %>
+            <% if ph.status_i18n == "解約済み" %>
+              <div class="bg-secondary text-light p-1">
+                <%= ph.status_i18n %>
+              </div>
+            <% elsif ph.status_i18n == "お取引中" %>
+              <div class="bg-success text-light p-1">
+                <%= ph.status_i18n %>
+              </div>
+            <% elsif ph.status_i18n == "申込済み" %>
+              <div class="bg-primary text-light p-1">
+                <%= ph.status_i18n %>
+              </div>
+            <% elsif ph.status_i18n == "入金失敗" %>
+              <div class="bg-warning text-light p-1">
+                <%= ph.status_i18n %>
+              </div>
+            <% elsif ph.status_i18n == "振込済み" %>
+              <div class="bg-info text-light p-1">
+                <%= ph.status_i18n %>
+              </div>
+            <% end %>
           <% else %>
-            <%= ph.user.contact_name %>
+            <div class="bg-dark text-light p-1">
+              販売終了
+            </div>
           <% end %>
-          <% if ph.delivery_postal_code.present? %>
-            <%= ph.delivery_postal_code %>
-          <% else %>
-            <%= ph.user.contact_postal_code %>
-          <% end %>
-          <% if ph.delivery_address.present? %>
-            <%= ph.delivery_address %>
-          <% else %>
-            <%= ph.user.contact_address %>
-          <% end %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
-<% if current_user.admin? %>
-  <%= link_to "戻る", users_path %>
-<% else %>
-  <%= link_to "戻る", root_path %>
-<% end %>
+        </div>
+        <div class="clearfix">
+          <div class=" col-md-4 float-left">
+            <% if ph.item.images.present? %>
+              <div class="mx-auto py-4", style="max-width: 250px; max-height: 220px;"><%= attachment_image_tag ph.item.images.first, :file, :fit, 200, 200 %></div>
+            <% else %>
+              <div class="mx-auto py-4", style="max-width: 250px; max-height: 220px;"><%= image_tag 'l_e_others_501.png', :size => "200" %></div>
+            <% end %>
+          </div>
+          <div class="col-md-8 p-4 float-left">
+
+            <div class="h5"><%= ph.item.name %></div>
+            <div class="clearfix">
+              <div class="text-primary float-right"><%= number_to_currency(ph.item.price, :precision => 0, :unit => '円') %></div>
+            </div>
+            <div>
+              ＜配送先指定＞<br>
+              <% if ph.delivery_name.present? && ph.delivery_postal_code.blank? && ph.delivery_address.blank? %>
+                [宛名]：<%= ph.delivery_name %>様<br>
+                [住所]：〒<%= ph.user.contact_postal_code %>　<%= ph.user.contact_address %>（ご登録住所）
+              <% elsif ph.delivery_name.present? && ph.delivery_postal_code.blank? && ph.delivery_address.present? %>
+                [宛名]：<%= ph.delivery_name %>様<br>
+                [住所]：<%= ph.delivery_address %>
+              <% elsif ph.delivery_name.present? && ph.delivery_postal_code.present? && ph.delivery_address.present? %>
+                [宛名]：<%= ph.delivery_name %>様<br>
+                [住所]：〒<%= ph.delivery_postal_code %>　<%= ph.delivery_address %>
+              <% elsif ph.delivery_name.blank? && ph.delivery_postal_code.blank? && ph.delivery_address.blank? %>
+                [宛名]：<%= ph.user.contact_name %>様（ご登録氏名）<br>
+                [住所]：〒<%= ph.user.contact_postal_code %>　<%= ph.user.contact_address %>（ご登録住所）
+              <% elsif ph.delivery_name.blank? && ph.delivery_postal_code.blank? && ph.delivery_address.present? %>
+                [宛名]：<%= ph.user.contact_name %>様（ご登録氏名）<br>
+                [住所]：<%= ph.delivery_address %>
+              <% elsif ph.delivery_name.blank? && ph.delivery_postal_code.present? && ph.delivery_address.present? %>
+                [宛名]：<%= ph.user.contact_name %>様（ご登録氏名）<br>
+                [住所]：〒<%= ph.delivery_postal_code %>　<%= ph.delivery_address %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="p-3 clearfix">
+          <div class="float-left">
+            <% if current_user.admin? %>
+              <%= link_to "ステータスの変更", edit_purchase_history_path(ph), class: "btn" %>
+            <% end %>
+            <% if @user.id == current_user.id || current_user.admin? %>
+              <%= link_to "配送先の変更", edit_purchase_history_path(ph), class: "btn" %>
+            <% end %>
+          </div>
+          <div class="float-right">
+            <%= ph.created_at.strftime("%Y-%m-%d") %>お申込
+          </div>
+        </div>
+      </div>
+    <% end %> 
+    <p class="text-center mt-5"><%= link_to "トップページへ戻る", items_path %></p>
+    <% if current_user.admin? %>
+      <p class="text-center mt-5"><%= link_to "顧客一覧", users_path %></p>
+    <% end %>
+  </section>
+</div>

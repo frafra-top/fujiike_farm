@@ -1,9 +1,9 @@
 class PurchaseMailer < ApplicationMailer
-	default from: "programmingbenkyo@gmail.com"
+	default from: "ふじいけファームのメールアドレス"
 
 	def purchase_mail(purchase_history)
     @purchase = purchase_history
-    mail to:       "programmingbenkyo@gmail.com",
+    mail to:       "ふじいけファームのメールアドレス",
     	 reply_to: @purchase.user.email,
          subject:  "#{@purchase.item.name}の購入リクエストを受け付けました。"
   end

@@ -1,31 +1,37 @@
-<div>
-  <h1>お問い合わせ</h1>
+
+<div class="container-fluid">
+  <section>
+    <div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+      <h2 class="text-success text-center">お問い合わせ内容の確認</h2>
+      <div class="offset-md-1 col-md-10">
+        <%= form_for @inquiry, :url => inquiry_sent_path do |f| %>
+          <div class="under-line offset-md-2 col-md-8 pb-2 pt-3 clearfix">
+            <div class="col-4 float-left">名前</div>
+            <div class="col-8 float-left">
+              <%= f.hidden_field :name %>
+              <%= @inquiry.name %>
+            </div>
+          </div>
+          <div class="under-line offset-md-2 col-md-8 pb-2 pt-3 clearfix">
+            <div class="col-4 float-left">メール</div>
+            <div class="col-8 float-left">
+              <%= f.hidden_field :email %>
+              <%= @inquiry.email %>
+            </div>
+          </div>
+          <div class="mt-5">
+            <p class="text-center">お問い合わせ内容</p>
+            <div class="offset-sm-1 col-sm-10 border border-secondary p-3">
+              <%= f.hidden_field :content %>
+              <%= simple_format(@inquiry.content) %>
+            </div>
+          </div>
+          <div class="mx-auto clearfix" , style="width: 200px;">
+            <div class="m-3 float-left"><%= f.submit '送信', name: 'send', class: "btn btn-outline-secondary" %></div>
+            <div class="m-3 float-left"><%= f.submit '戻る', name: 'back', class: "btn btn-outline-secondary" %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
 </div>
- 
-<%= form_for @inquiry, :url => inquiry_sent_path do |f| %>
-  <table>
-    <tr>
-      <th>名前</th>
-      <td>
-        <%= f.hidden_field :name %>
-        <%= @inquiry.name %>
-      </td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td>
-        <%= f.hidden_field :email %>
-        <%= @inquiry.email %>
-      </td>
-    </tr>
-    <tr>
-      <th>お問い合わせ内容</th>
-      <td>
-        <%= f.hidden_field :content %>
-        <%= simple_format(@inquiry.content) %>
-      </td>
-    </tr>
-  </table>
-  <%= f.submit '戻る', name: 'back' %>
-  <%= f.submit '送信', name: 'send' %>
-<% end %>

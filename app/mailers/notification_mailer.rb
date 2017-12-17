@@ -1,5 +1,5 @@
 class NotificationMailer < ApplicationMailer
-  default from: "programmingbenkyo@gmail.com"   # 送信元アドレス
+  default from: "ふじいけファームのメールアドレス"   # 送信元アドレス
 
   def send_to_one(notification)
     @notification = notification

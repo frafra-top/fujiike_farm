@@ -1,6 +1,6 @@
 class PurchaseHistoriesController < ApplicationController
-  before_action :correct_user, only: [:new, :create]
-  before_action :correct_admin, only: [:index, :edit, :update]
+  before_action :correct_user, only: [:new, :create, :edit, :update]
+  before_action :correct_admin, only: [:index]
   
   def index
     @purchases = PurchaseHistory.order("created_at DESC").page(params[:page])

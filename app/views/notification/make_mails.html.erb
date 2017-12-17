@@ -1,29 +1,41 @@
-<%= form_for @notification, :url => notification_confirm_mails_path do |f| %>
-  <div class="page-header">
-    <h1>藤池ファームからのお知らせ（全体）</h1>
-  </div>
+<div class="container-fluid">
+  <section>
+    <div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+      <h2 class="text-success text-center">ふじいけファームからのお知らせを送る（全体）</h2>
 
-  <% if @notification.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <strong>入力内容にエラーがあります</strong>
-      <ul>
-        <% @notification.errors.each do |attr, msg| %>
-          <li><%= msg %></li>
+      <%= form_for @notification, :url => notification_confirm_mails_path do |f| %>
+        <% if @notification.errors.any? %>
+          <div class="alert alert-danger" role="alert">
+            <strong>入力内容にエラーがあります</strong>
+            <ul>
+              <% @notification.errors.each do |attr, msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+        <table class="table">
+          <tr>
+            <th style="width: 30%">
+              題名<span class="text-danger">（必須）</span></span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.text_field :subject, class: "form-control w-100 p-2 my-3" %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              お知らせ内容<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group">
+              <%= f.text_area :message, class: "form-control w-100 p-2 my-3", style: "height: 300px;" %>
+            </td>
+          </tr>
+        </table>
+        <div class="mx-auto clearfix" , style="width: 200px;">
+          <div class="m-3 float-left"><%= f.submit '確認', class: "btn btn-outline-secondary" %></div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <table class="table">
-    <tr>
-      <th>題名<span class="text-danger">（必須）</span></th>
-      <td><%= f.text_field :subject %></td>
-    </tr>
-    <tr>
-      <th>お知らせ内容<span class="text-danger">（必須）</span></th>
-      <td><%= f.text_area :message %></td>
-    </tr>
-  </table>
-  <%= f.submit '確認', class: 'btn btn-primary' %>
-<% end %>
-<%= link_to "戻る", admin_index_path, class: 'btn btn-primary' %>
+  </section>
+</div>

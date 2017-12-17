@@ -1,5 +1,10 @@
-<h1>新商品の登録</h1>
-
-<%= render 'form', item: @item %>
+<div class="container-fluid">
+  <section>
+    <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10">
+      <h2 class="text-success text-center mb-5">新商品の登録</h2>
+			<%= render 'form', item: @item %>
+		</div>
+	</section>
+</div>
 
 <%= link_to '戻る', admin_index_path %>

@@ -1,6 +1,6 @@
 class InquiryMailer < ActionMailer::Base
-  default from: "programmingbenkyo@gmail.com"
-  default to: "programmingbenkyo@gmail.com"
+  default from: "ふじいけファームのメールアドレス"
+  default to: "ふじいけファームのメールアドレス"
  
   def received_email(inquiry)
     @inquiry = inquiry
