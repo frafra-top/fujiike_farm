@@ -3,20 +3,16 @@
   <!-- スライドさせる画像の設定 -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <!--<img class="d-block w-100" src="..." alt="第1スライド">-->
-      <%= image_tag 'farm_summer.jpg', :width => "100%", class: "d-block w-100 slide-image" %>
-    </div><!-- /.carousel-item -->
-    <div class="carousel-item">
-      <!--<img class="d-block w-100" src="..." alt="第2スライド">-->
-      <%= image_tag 'farm_autumn.jpg', :width => "100%", class: "d-block w-100 slide-image" %>
-    </div><!-- /.carousel-item -->
-    <div class="carousel-item">
-      <!--<img class="d-block w-100" src="..." alt="第3スライド">-->
       <%= image_tag 'farm_cows.jpg', :width => "100%", class: "d-block w-100 slide-image" %>
     </div><!-- /.carousel-item -->
     <div class="carousel-item">
-      <!--<img class="d-block w-100" src="..." alt="第3スライド">-->
       <%= image_tag 'farm_cows2.jpg', :width => "100%", class: "d-block w-100 slide-image" %>
+    </div><!-- /.carousel-item -->
+    <div class="carousel-item">
+      <%= image_tag 'farm_summer.jpg', :width => "100%", class: "d-block w-100 slide-image" %>
+    </div><!-- /.carousel-item -->
+    <div class="carousel-item">
+      <%= image_tag 'farm_autumn.jpg', :width => "100%", class: "d-block w-100 slide-image" %>
     </div><!-- /.carousel-item -->
   </div><!-- /.carousel-inner -->
 </div><!-- /.carousel -->
@@ -25,7 +21,7 @@
   <section>
     <div class="offset-md-2 col-md-8" id="ahead_to_feature">
       <h2 class="text-success text-center">農場としての特色</h2>
-      <div>
+      <div class="text-grey">
         当農場は、10頭以下という少ない乳牛に対して、東京ドームに直しておよそ30個分という非常に広い敷地で育てていることが最大の特色です。<br>
         開放感あふれるのどかな環境で、ストレスなく育てられた乳牛たちは、たっぷりの脂肪を含んでいながらも、さっぱりした口当たりになるお乳を出すようになります。<br>
         農場自体は創業して5年ほどの若い農場ですが、土地は曽祖父の代から代々受け継いできた群馬の土地であり、もともと牧草を生産するのに使われていた土地でした。<br>
@@ -37,7 +33,7 @@
   <section>
     <div class="offset-lg-1 col-lg-10" id="ahead_to_efforts">
       <h2 class="text-success text-center">農場としての取り組み</h2>
-      <div>
+      <div class="text-grey p-3">
         当農場は品質管理にも余念がありません。<br>
         牛たちが生産してくれた牛乳は、搾りたてを貯蔵用のタンクに運ぶまでに殺菌消毒したのち、最適な温度で保管しています。<br>
         品質を検査するために必要な器具はすべて機械管理しており、自分たちで毎朝・毎昼・毎晩、1日3回の清掃を行い、徹底的に埃や雑菌が入ることを防いでおります。<br>
@@ -58,7 +54,7 @@
         <div class="col-lg-5 float-left">
           <%= image_tag 'services.jpg', width: "100%" %>
         </div>
-        <div class="offset-lg-1 col-lg-6 float-left">
+        <div class="offset-lg-1 col-lg-6 float-left text-grey"">
           お客様とのお約束として、一人一人のお客様のことを理解するように取り組むことを行なっています。<br>
           当農場では、基本的には発注をいただいたお客様それぞれに個別でご連絡を取らせていただいており、配送のペースや、配送時の梱包などがお客様それぞれで異なる場合があります。<br>
           また、お取引の長いお客様には、ご希望  に応じて発送するものの中でも少し脂肪分が少なめのものや、ヨーグルトなどでは固めのもの、柔らかめのものなど、多少異なる仕上がりのものの中でお好みのものを選別してお送りしていることもあります。<br>
@@ -75,14 +71,14 @@
       <div class="offset-md-1 col-md-10 clearfix">
         <% @items.each do |item| %>
           <%= link_to item do %>
-            <div class="col-md-6 float-left hover", style="height: 350px;">
+            <div class="col-md-6 float-left hover my-3", style="height: 360px;">
               <% if item.images.present? %>
-                <div class="mx-auto py-4", style="max-width: 250px; max-height: 220px;"><%= attachment_image_tag item.images.first, :file, :fit, 250, 200 %></div>
+                <div class="mx-auto py-4", style="max-width: 300px; max-height: 250px;"><%= attachment_image_tag item.images.first, :file, :fit, 300, 220 %></div>
               <% else %>
-                <div class="mx-auto py-4", style="max-width: 250px; max-height: 220px;"><%= image_tag 'l_e_others_501.png', :size => "200" %></div>
+                <div class="mx-auto py-4", style="max-width: 300px; max-height: 250px;"><%= image_tag 'l_e_others_501.png', :size => "300x250" %></div>
               <% end %>
               <div class="py-4 text-center"><%= item.name %></div>
-              <div class="text-primary text-center"><%= number_to_currency(item.price, :precision => 0, :unit => '円') %></div>
+              <div class="text-success text-center h4"><%= number_to_currency(item.price, :precision => 0, :unit => '円') %></div>
             </div>
           <% end %>
         <% end %>

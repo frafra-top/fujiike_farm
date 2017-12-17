@@ -1,11 +1,28 @@
-<h1>お客様一覧</h1>
+<div class="container-fluid">
 
-<ul class="users">
-  <% @users.each do |user| %>
-    <li>
-      <%= link_to user.contact_name, user %>
-    </li>
-  <% end %>
-</ul>
+  <section>
+    <div class="offset-lg-1 col-lg-10 offset-md-1 col-md-10">
+      <h2 class="text-success text-center mb-5">お客様一覧</h2>
+      <table class="table table-bordered tabla-respomsible">
+        <thead>
+          <tr style="background-color: #e5fff2;">
+			      <th>氏名</th>
+			      <th>メールアドレス</th>
+			      <th>住所</th>
+			    </tr>
+			  </thead>
+			  <tbody class="text-grey">
+			  	<% @users.each do |user| %>
+			      <tr>		        
+		          <td style="width: 25%"><%= link_to user.contact_name, user %></td>
+		          <td style="width: 30%"><%= user.email %></td>
+		          <td style="width: 45%"><small>〒<%= user.contact_postal_code %></small>　<%= user.contact_address %></td>     	  
+		      	</tr>
+		      <% end %>
+        </tbody>
+      </table>
+			<p class="text-center mt-5"><%= link_to "トップページに戻る", items_path %>
 
-<%= link_to "戻る", admin_index_path %>
+		</div>
+	</section>
+</div>

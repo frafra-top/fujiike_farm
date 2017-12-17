@@ -1,37 +1,130 @@
-<h1>購入ステータス変更</h1>
+<div class="container-fluid">
+  <section>
+    <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10">
+      <h2 class="text-success text-center mb-5">ご契約状況の編集</h2>
+      <div class="history-box border border-success offset-lg-1 col-lg-10 my-5 p-3">
+        <div class="m-3">
+          <% if @purchase.item.exist? %>
+            <% if @purchase.status_i18n == "解約済み" %>
+              <div class="bg-secondary text-light p-1">
+                <%= @purchase.status_i18n %>
+              </div>
+            <% elsif @purchase.status_i18n == "お取引中" %>
+              <div class="bg-success text-light p-1">
+                <%= @purchase.status_i18n %>
+              </div>
+            <% elsif @purchase.status_i18n == "申込済み" %>
+              <div class="bg-primary text-light p-1">
+                <%= @purchase.status_i18n %>
+              </div>
+            <% elsif @purchase.status_i18n == "入金失敗" %>
+              <div class="bg-warning text-light p-1">
+                <%= @purchase.status_i18n %>
+              </div>
+            <% elsif @purchase.status_i18n == "振込済み" %>
+              <div class="bg-info text-light p-1">
+                <%= @purchase.status_i18n %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="bg-dark text-light p-1">
+              販売終了
+            </div>
+          <% end %>
+        </div>
+        <div class="clearfix">
+          <div class=" col-md-4 float-left">
+            <% if @purchase.item.images.present? %>
+              <div class="mx-auto py-4", style="max-width: 250px; max-height: 220px;"><%= attachment_image_tag @purchase.item.images.first, :file, :fit, 200, 200 %></div>
+            <% else %>
+              <div class="mx-auto py-4", style="max-width: 250px; max-height: 220px;"><%= image_tag 'l_e_others_501.png', :size => "200" %></div>
+            <% end %>
+          </div>
+          <div class="col-md-8 p-4 float-left">
 
-<table>
-  <tr>
-    <th>購入日</th>
-    <td><%= @purchase.created_at.strftime("%Y-%m-%d") %></td>
-  </tr>
-  <tr>
-    <th>お客様名</th>
-    <td><%= @purchase.user.contact_name %></td>
-  </tr>
-  <tr>
-    <th>商品名</th>
-    <td><%= @purchase.item.name %></td>
-  </tr>
-</table>
-<%= form_for @purchase do |form| %>
-  <table>
-    <tr>
-      <th><%= form.label :status %></th>
-      <td><%= form.select :status, PurchaseHistory.statuses_i18n.invert %></td>
-    </tr>
-  </table>
-  <strong>配送先住所変更</strong>
-    <div class="field">
-      <%= form.label '配送先氏名（宛名）' %><br />
-      <%= form.text_field :delivery_name, autofocus: true %>
+            <div class="h5"><%= @purchase.item.name %></div>
+            <div class="clearfix">
+              <div class="text-success h5 float-right"><%= number_to_currency(@purchase.item.price, :precision => 0, :unit => '円') %></div>
+            </div>
+            <div>
+              ＜配送先指定＞<br>
+              <% if @purchase.delivery_name.present? && @purchase.delivery_postal_code.blank? && @purchase.delivery_address.blank? %>
+                [宛名]：<%= @purchase.delivery_name %>様<br>
+                [住所]：〒<%= @purchase.user.contact_postal_code %>　<%= @purchase.user.contact_address %>（ご登録住所）
+              <% elsif @purchase.delivery_name.present? && @purchase.delivery_postal_code.blank? && @purchase.delivery_address.present? %>
+                [宛名]：<%= @purchase.delivery_name %>様<br>
+                [住所]：<%= @purchase.delivery_address %>
+              <% elsif @purchase.delivery_name.present? && @purchase.delivery_postal_code.present? && @purchase.delivery_address.present? %>
+                [宛名]：<%= @purchase.delivery_name %>様<br>
+                [住所]：〒<%= @purchase.delivery_postal_code %>　<%= @purchase.delivery_address %>
+              <% elsif @purchase.delivery_name.blank? && @purchase.delivery_postal_code.blank? && @purchase.delivery_address.blank? %>
+                [宛名]：<%= @purchase.user.contact_name %>様（ご登録氏名）<br>
+                [住所]：〒<%= @purchase.user.contact_postal_code %>　<%= @purchase.user.contact_address %>（ご登録住所）
+              <% elsif @purchase.delivery_name.blank? && @purchase.delivery_postal_code.blank? && @purchase.delivery_address.present? %>
+                [宛名]：<%= @purchase.user.contact_name %>様（ご登録氏名）<br>
+                [住所]：<%= @purchase.delivery_address %>
+              <% elsif @purchase.delivery_name.blank? && @purchase.delivery_postal_code.present? && @purchase.delivery_address.present? %>
+                [宛名]：<%= @purchase.user.contact_name %>様（ご登録氏名）<br>
+                [住所]：〒<%= @purchase.delivery_postal_code %>　<%= @purchase.delivery_address %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="float-right">
+            <%= @purchase.created_at.strftime("%Y-%m-%d") %>お申込
+          </div>
+        </div>
+      </div>
+      <div class="offset-lg-1 col-lg-10 my-5 p-3">
+        <%= form_for @purchase do |form| %>
+          <% if current_user.admin? %>
+            <p class="h4 text-success">ステータス変更</p>
+            <table class="table">      
+              <tr>
+                <th style="width: 30%"><%= form.label :status %></th>
+                <td class="form-group" style="width: 70%"><%= form.select :status, PurchaseHistory.statuses_i18n.invert %></td>
+              </tr>
+            </table>
+          <% end %>
+          <p class="h4 mt-4 text-success">配送先指定</p>
+          <table class="table">
+            <tr>
+              <th style="width: 30%">宛名</th>
+              <td class="form-group" style="width: 70%">
+                <%= form.text_field :delivery_name, class: "form-control w-100 p-2 my-3" %>
+              </td>
+            </tr>
+            <tr>
+              <th>郵便番号</th>
+              <td class="form-group">
+                <%= form.text_field :delivery_postal_code, class: "form-control w-100 p-2 my-3" %>
+              </td>
+            </tr>
+            <tr>
+              <th>住所</th>
+              <td class="form-group">
+                <%= form.text_field :delivery_address, class: "form-control w-100 p-2 my-3" %>
+              </td>
+            </tr>
+          </table>
+           <div class="mx-auto clearfix" , style="width: 200px;">
+            <div class="m-3 float-left"><%= form.submit '編集', class: "btn btn-outline-success" %></div>
+            <% if current_user.admin? %>
+              <div class="m-3 float-left"><%= link_to '戻る', user_path(@purchase.user_id), class: "btn btn-outline-success" %></div>
+            <% else %>
+              <div class="m-3 float-left"><%= link_to '戻る', user_path(current_user), class: "btn btn-outline-success" %></div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="field">
-      <%= form.label '配送先住所' %><br />
-      <%= form.text_field :delivery_postal_code, placeholder: "郵便番号", autofocus: true %>
-      <%= form.text_field :delivery_address, placeholder: "住所", autofocus: true %>
-    </div>
-<p><%= form.submit %></p>
-<%= link_to "戻る", user_path(@purchase.user) %>
-<% end %>
+  </section>
+</div>
+
+
+
+
+
+
 

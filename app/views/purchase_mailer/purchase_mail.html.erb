@@ -1,30 +1,39 @@
-<h2>購入商品</h2>
 
-<%= @purchase.item.name %>
-<%= number_to_currency(@purchase.item.price, :precision => 0, :unit => '円') %>
+<h3>購入者様情報</h3>
+<p><%= @purchase.user.contact_name %></p>
+<p><%= @purchase.user.contact_postal_code %></p>
+<p><%= @purchase.user.contact_address %></p>
+<p><%= @purchase.user.phone %></p>
 
-<h2>購入者様情報</h2>
+<h3>購入商品</h3>
+<p>
+  <%= @purchase.item.name %>
+  <%= number_to_currency(@purchase.item.price, :precision => 0, :unit => '円') %>
+</p>
 
+<h4>配送先住所</h4>
 
-<%= @purchase.user.contact_name %>
-<%= @purchase.user.contact_postal_code %>
-<%= @purchase.user.contact_address %>
-<%= @purchase.user.phone %>
-
-<strong>配送先住所</strong>
-
-  <% if @purchase.delivery_name.present? %>
-    <%= @purchase.delivery_name %>
-  <% else %>
-    <%= @purchase.user.contact_name %>
+<div>
+  ＜配送先指定＞<br>
+  <% if @purchase.delivery_name.present? && @purchase.delivery_postal_code.blank? && @purchase.delivery_address.blank? %>
+    [宛名]：<%= @purchase.delivery_name %>様<br>
+    [住所]：〒<%= @purchase.user.contact_postal_code %>　<%= @purchase.user.contact_address %>（ご登録住所）
+  <% elsif @purchase.delivery_name.present? && @purchase.delivery_postal_code.blank? && @purchase.delivery_address.present? %>
+    [宛名]：<%= @purchase.delivery_name %>様<br>
+    [住所]：<%= @purchase.delivery_address %>
+  <% elsif @purchase.delivery_name.present? && @purchase.delivery_postal_code.present? && @purchase.delivery_address.present? %>
+    [宛名]：<%= @purchase.delivery_name %>様<br>
+    [住所]：〒<%= @purchase.delivery_postal_code %>　<%= @purchase.delivery_address %>
+  <% elsif @purchase.delivery_name.blank? && @purchase.delivery_postal_code.blank? && @purchase.delivery_address.blank? %>
+    [宛名]：<%= @purchase.user.contact_name %>様（ご登録氏名）<br>
+    [住所]：〒<%= @purchase.user.contact_postal_code %>　<%= @purchase.user.contact_address %>（ご登録住所）
+  <% elsif @purchase.delivery_name.blank? && @purchase.delivery_postal_code.blank? && @purchase.delivery_address.present? %>
+    [宛名]：<%= @purchase.user.contact_name %>様（ご登録氏名）<br>
+    [住所]：<%= @purchase.delivery_address %>
+  <% elsif @purchase.delivery_name.blank? && @purchase.delivery_postal_code.present? && @purchase.delivery_address.present? %>
+    [宛名]：<%= @purchase.user.contact_name %>様（ご登録氏名）<br>
+    [住所]：〒<%= @purchase.delivery_postal_code %>　<%= @purchase.delivery_address %>
   <% end %>
-  <% if @purchase.delivery_postal_code.present? %>
-    <%= @purchase.delivery_postal_code %>
-  <% else %>
-    <%= @purchase.user.contact_postal_code %>
-  <% end %>
-  <% if @purchase.delivery_address.present? %>
-    <%= @purchase.delivery_address %>
-  <% else %>
-    <%= @purchase.user.contact_address %>
-  <% end %>
+</div>
+
+<p>ふじいけファーム</p>
