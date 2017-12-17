@@ -3,19 +3,19 @@ Image.seed(:id,
 {
   id: 1,
   item_id: 1,
-  file: Rails.root.join("db/fixtures/images/milk-750.jpg").open
+  file: Rails.root.join("db/fixtures/images/milk_720.jpg").open
   },
 
 {
   id: 2,
   item_id: 2,
-  file: Rails.root.join("db/fixtures/images/milk-200.jpg").open
+  file: Rails.root.join("db/fixtures/images/milk_200.jpg").open
   },
 
 {
   id: 3,
   item_id: 3,
-  file: Rails.root.join("db/fixtures/images/yoghurt.jpg").open
+  file: Rails.root.join("db/fixtures/images/yogurt.jpg").open
   },
 
 {

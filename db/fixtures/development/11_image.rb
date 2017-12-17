@@ -15,7 +15,7 @@ Image.seed(:id,
 {
 	id: 3,
   item_id: 3,
-  file: Rails.root.join("db/fixtures/images/yoguht.jpg").open
+  file: Rails.root.join("db/fixtures/images/yogurt.jpg").open
 	},
 
 {
