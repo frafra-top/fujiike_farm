@@ -12,7 +12,7 @@
             <div class="p-4"><%= image_tag 'l_e_others_501.png', :size => "250" %></div>
           <% end %>
         </div>
-        <div class="col-lg-8 p-5 text-grey float-left">
+        <div class="col-lg-8 p-5 float-left">
           <p class="h4"><%= @item.name %></p>
           <p class="h3 py-5 text-success text-center"><%= number_to_currency(@item.price, :precision => 0, :unit => '円') %></p>
         </div>
@@ -23,7 +23,7 @@
       <%= form_with(model: [@purchase.item, @purchase], url: item_purchase_histories_path, local: true) do |form| %>
         <div class="px-5">
           <p class="h3 py-3">配送先の設定</p>
-          <div class="text-grey">
+          <div>
             <small>ご登録住所以外の住所に配送をご希望のお客様は以下の配送先住所をご入力ください。<br>
             ご指定が無い場合は空欄で構いません。</small>
           </div>

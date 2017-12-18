@@ -19,11 +19,11 @@
             <div class="p-4"><%= image_tag 'l_e_others_501.png', :size => "350" %></div>
           <% end %>
         </div>
-        <div class="offset-lg-1 col-lg-6 p-4 text-grey float-left">
+        <div class="offset-lg-1 col-lg-6 p-4 float-left">
           <%= simple_format(@item.content) %>
         </div>
       </div>
-      <p class="text-center text-grey">
+      <p class="text-center">
         ※お申し込みの前に必ず<%= link_to "ご契約申込時の注意事項", notes_path, class: "text-primary" %>をご確認ください。
       </p>
       <div class="offset-3 col-6 py-5">

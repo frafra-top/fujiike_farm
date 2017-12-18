@@ -13,11 +13,20 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery3
+//= require jquery.slick
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
 
 
 $(document).on('turbolinks:load', function() {
-	$('.carousel').carousel()
-});
+  $('.scroller').slick({
+  	autoplay: true,
+  	prevArrow: false,
+  	nextArrow: false,
+  	autoplaySpeed: 2000,
+  	speed: 2000,
+	pauseOnHover: false,
+    fade: true
+  })
+ });

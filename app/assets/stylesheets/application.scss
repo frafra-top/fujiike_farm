@@ -17,6 +17,8 @@
  // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+@import 'slick';
+
 @font-face {
   font-family: 'utsukushi-mincho';
   src: font-url('UtsukushiFONT.otf') format('truetype');
@@ -26,6 +28,7 @@
 
 body {
 	font-family: "Sawarabi Mincho";
+	color: #696969;
 }
 
 section {
@@ -56,9 +59,7 @@ a {
 	border-bottom: 1px solid #dcdcdc;
 }
 
-.text-grey {
-	color: #696969;
-}
+
 
 .logo {
 	font-family: 'utsukushi-mincho';
@@ -95,25 +96,8 @@ a {
 	opacity: 0.8;
 }
 
-.carousel-fade .carousel-inner .carousel-item {
-  opacity: 0.2;
-  -webkit-transition-property: opacity;
-  -moz-transition-property: opacity;
-  -o-transition-property: opacity;
-  transition-property: opacity;
-  transition-duration:2s;
-  transition-timing-function:ease-out;
-}
-.carousel-fade .carousel-inner .active {
-  opacity: 0.8;
-}
-
 .slide-image {
-	max-height: 600px;
-}
-
-.carousel {
-	margin-bottom: 40px;
+	max-height: 700px;
 }
 
 

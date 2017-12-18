@@ -6,8 +6,12 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
+    <% if content_for?(:head) %>
+      <%= yield(:head) %>
+    <% end %>
   </head>
 
   <body>
@@ -60,7 +64,9 @@
         </div><!-- /.navbar-collapse -->
       </nav>
   	</header>
-    <div class="bg-light" id="notice"><%= notice %></div>
+    <div class="bg-light clearfix">
+      <div class="pr-3 float-right" id="notice"><%= notice %></div>
+    </div>
     <%= yield %>
   </body>
 </html>

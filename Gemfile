@@ -48,6 +48,7 @@ gem 'refile-mini_magick', github: 'refile/refile-mini_magick'
 # bootstarap導入
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'jquery-rails'
+gem 'jquery-slick-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
