@@ -17,12 +17,11 @@
             </div>
           <% end %>
           <div class="mx-auto" style="width: 90px;">
-            <%= f.submit 'ログイン', class: "btn btn-outline-primary" %>
+            <%= f.submit 'ログイン', class: "btn btn-outline-success" %>
           </div>
         <% end %>
+        <div class="my-5"><%= render "devise/shared/links" %></div>
       </div>
-
-      <%#= render "devise/shared/links" %>
     </div>
   </section>
 </div>

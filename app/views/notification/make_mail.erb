@@ -42,7 +42,8 @@
           </tr>
         </table>
         <div class="mx-auto clearfix" , style="width: 200px;">
-          <div class="m-3 float-left"><%= f.submit '確認', class: "btn btn-outline-secondary" %></div>
+          <div class="m-3 float-left"><%= f.submit '確認', class: "btn btn-outline-success" %></div>
+          <div class="m-3 float-left"><%= link_to '戻る', 'javascript:history.back()', class: "btn btn-outline-success" %></div>
         </div>
       <% end %>
     </div>

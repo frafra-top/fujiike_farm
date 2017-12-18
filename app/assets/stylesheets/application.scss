@@ -17,6 +17,13 @@
  // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+@font-face {
+  font-family: 'utsukushi-mincho';
+  src: font-url('UtsukushiFONT.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
 	font-family: "Sawarabi Mincho";
 }
@@ -49,10 +56,14 @@ a {
 	border-bottom: 1px solid #dcdcdc;
 }
 
+.text-grey {
+	color: #696969;
+}
+
 .logo {
-	color: #0000cd !important;
-	font-size: 5vw;
-	text-shadow: 5px 5px 3px #4169e1;
+	font-family: 'utsukushi-mincho';
+	font-size: 36px;;
+	text-shadow: 5px 5px 3px #a4d5bd;
 	font-weight: 800;
 }
 
@@ -61,12 +72,13 @@ a {
 	color: #0000cd;
 }
 
-.top {
-	max-height: 100px;
-}
-
 .hover:hover {
 	opacity: 0.7;
+}
+
+.navbar-right{
+  text-align: right;
+  display: block;
 }
 
 .item-title {
@@ -75,8 +87,7 @@ a {
 
 .history-box {
 	max-height: 500px;
-	border: 2px solid #4169e1;
-	background-color: #e0ffff;
+	background-color: #e5fff2;
 	border-radius: 30px;
 }
 

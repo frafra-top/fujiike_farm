@@ -1,4 +1,6 @@
 class NotificationController < ApplicationController
+  before_action :correct_admin
+
   def make_mail
     # 入力画面を表示
     @notification = Notification.new
@@ -61,9 +63,20 @@ class NotificationController < ApplicationController
   end
 
   private
-  def notification_params
-    # submitしたデータのうち、Model作成に必要なものを
-    # permitの引数に指定する
-    params.require(:notification).permit(:email, :subject, :message)
-  end
+    def notification_params
+      # submitしたデータのうち、Model作成に必要なものを
+      # permitの引数に指定する
+      params.require(:notification).permit(:email, :subject, :message)
+    end
+
+    def correct_admin
+      if user_signed_in?
+        if current_user.admin?
+        else
+          redirect_to items_path        
+        end
+      else
+          redirect_to new_user_session_path
+      end
+    end
 end
