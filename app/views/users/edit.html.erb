@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <section>
+    <div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+      <h2 class="text-success text-center">登録情報の編集</h2>
+      <%= form_for(@user, url: user_path(@user), html: { method: :put }) do |f| %>
+        <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <table class="table">
+          <tr>
+            <th style="width: 30%">
+              ニックネーム<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.text_field :name, class: "form-control w-100 p-2 my-3" %>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 30%">
+              フルネーム<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.text_field :contact_name, class: "form-control w-100 p-2 my-3" %>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 30%">
+              メールアドレス<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.email_field :email, class: "form-control w-100 p-2 my-3" %>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 30%">
+              郵便番号<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.text_field :contact_postal_code, class: "form-control w-100 p-2 my-3" %>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 30%">
+              住所<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.text_field :contact_address, class: "form-control w-100 p-2 my-3" %>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 30%">
+              電話番号<span class="text-danger">（必須）</span>
+            </th>
+            <td class="form-group" style="width: 70%">
+              <%= f.text_field :phone, class: "form-control w-100 p-2 my-3" %>
+            </td>
+          </tr>
+        </table>
+        <div class="mx-auto clearfix" , style="width: 200px;">
+          <div class="m-3 float-left"><%= f.submit '編集', class: "btn btn-outline-success" %></div>
+          <div class="m-3 float-left"><%= link_to '戻る', 'javascript:history.back()', class: "btn btn-outline-success" %></div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>
+

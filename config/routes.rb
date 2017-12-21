@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :purchase_histories, only: [:edit, :update]
   resources :admin
   devise_for :users
-  resources :users, only: [:index, :show] do
+  resources :users, only: [:index, :show, :edit, :update] do
     member {
       get 'notification/make_mail' => 'notification#make_mail'  # 個別メール画面
       post 'notification/confirm_mail' => 'notification#confirm_mail'  # 個別メール確認画面
