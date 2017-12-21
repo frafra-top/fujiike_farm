@@ -34,7 +34,15 @@
       </table>
 
       <div class="offset-3 col-6 p-5">
-        <%= link_to '登録内容を編集する', edit_user_registration_path, class: "btn btn-success btn-block my-3" %>
+        <% if current_user.admin? %>
+          <% if current_user.id.to_s == params[:id].to_s %>
+            <%= link_to '登録内容を編集する', edit_user_registration_path, class: "btn btn-success btn-block my-3" %>
+          <% else %>
+            <%= link_to '登録内容を編集する', edit_user_path(params[:id]), class: "btn btn-success btn-block my-3" %>
+          <% end %>
+        <% else %>
+          <%= link_to '登録内容を編集する', edit_user_registration_path, class: "btn btn-success btn-block my-3" %>
+        <% end %>
       </div>
     </div>
   </section>
@@ -128,7 +136,7 @@
           </div>
         </div>
       <% end %>
-    </div> 
+    </div>
     <p class="text-center mt-5"><%= link_to "トップページへ戻る", items_path %></p>
     <% if current_user.admin? %>
       <p class="text-center mt-5"><%= link_to "顧客一覧", users_path %></p>

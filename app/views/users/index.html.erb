@@ -13,10 +13,10 @@
 			  </thead>
 			  <tbody>
 			  	<% @users.each do |user| %>
-			      <tr>		        
+			      <tr>
 		          <td style="width: 25%"><%= link_to user.contact_name, user %></td>
 		          <td style="width: 30%"><%= user.email %></td>
-		          <td style="width: 45%"><small>〒<%= user.contact_postal_code %></small>　<%= user.contact_address %></td>     	  
+		          <td style="width: 45%"><small>〒<%= user.contact_postal_code %></small>　<%= user.contact_address %></td>
 		      	</tr>
 		      <% end %>
         </tbody>

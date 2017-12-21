@@ -1,5 +1,4 @@
 class NotificationMailer < ApplicationMailer
-
   def send_to_one(notification)
     @notification = notification
     mail to:      @notification.email,

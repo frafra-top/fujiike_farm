@@ -9,10 +9,10 @@ class AdminController < ApplicationController
 	    if user_signed_in?
 	      if current_user.admin?
 	      else
-	        redirect_to items_path        
+	        redirect_to items_path
 	      end
 	    else
-	        redirect_to new_user_session_path
+        redirect_to new_user_session_path
 	    end
 	  end
 end
